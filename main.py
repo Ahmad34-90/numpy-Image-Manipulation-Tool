@@ -1,21 +1,22 @@
 from PIL import Image
 import numpy as np
 
-images = Image.open("images/input.jpg")
+from image_tools import adjust_brightness
 
-#img to numpy array
-image_array = np.array(images)
-print("Origional shape = ", image_array.shape)
-print("Origional datatype = ", image_array.dtype)
 
-# Increase brightness
-brighter_array = image_array-100
+image = Image.open("images/input.jpg")
 
-#value between 0 and 255
-brighter_array = np.clip(brighter_array, 0, 255)
+image_array = np.array(image)
 
-#convert numpy array back to image
-brighter_image = Image.fromarray(brighter_array.astype(np.uint8))
+print("Original shape:", image_array.shape)
+print("Original data type:", image_array.dtype)
 
-brighter_image.save("output/brighter.jpg")
-print("Brighter image Save.")
+brightness = -50
+
+result_array = adjust_brightness(image_array, brightness)
+
+result_image = Image.fromarray(result_array)
+
+result_image.save("output/brighter.jpg")
+
+print("Brightness adjusted successfully!")
