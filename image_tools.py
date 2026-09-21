@@ -6,3 +6,8 @@ def adjust_brightness(image_array, value):
     brighter_array = np.clip(brighter_array, 0, 255)
 
     return brighter_array.astype(np.uint8)
+
+def graysacale_image(image_array):
+    grayscale_array = np.mean(image_array, axis=2)
+
+    return grayscale_array.astype(np.uint8)
